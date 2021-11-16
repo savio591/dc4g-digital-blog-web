@@ -6,7 +6,7 @@ interface HeaderProps {
   results: number | undefined | null;
 }
 
-export function Header({ title, results }: HeaderProps): JSX.Element {
+export function PostsHeader({ title, results }: HeaderProps): JSX.Element {
   const resultsHeaderFormatted = useMemo(() => {
     if (typeof results !== 'number' || results < 1) {
       return "Nenhum resultado encontrado";

@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { Header } from "../../components/PostsHeader";
+import { PostsHeader } from "../../components/PostsHeader";
 
 describe("Posts Header", () => {
   const title = "Últimas notícias";
@@ -8,7 +8,7 @@ describe("Posts Header", () => {
 
   it("Renders posts with some results", () => {
     const qtResults = 12;
-    render(<Header title={title} results={qtResults} />);
+    render(<PostsHeader title={title} results={qtResults} />);
 
     const titleHeading = screen.getByRole("heading", {
       name: title,
@@ -23,7 +23,7 @@ describe("Posts Header", () => {
 
   it("Renders posts with no results(null)", () => {
     const qtResults = null;
-    render(<Header title={title} results={qtResults} />);
+    render(<PostsHeader title={title} results={qtResults} />);
 
     const titleHeading = screen.getByRole("heading", {
       name: title,
@@ -38,7 +38,7 @@ describe("Posts Header", () => {
 
   it("Renders posts with no results(undefined)", () => {
     const qtResults = undefined;
-    render(<Header title={title} results={qtResults} />);
+    render(<PostsHeader title={title} results={qtResults} />);
 
     const titleHeading = screen.getByRole("heading", {
       name: title,
