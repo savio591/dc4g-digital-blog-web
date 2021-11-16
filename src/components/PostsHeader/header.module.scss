@@ -1,0 +1,14 @@
+@import "../../sass/variables.module.scss";
+
+header.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: $heading-primary;
+  gap: 0.5rem;
+}
+
+.divider {
+  height: 40px;
+  border-right: 1px solid $divider;
+}
