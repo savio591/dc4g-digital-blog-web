@@ -10,12 +10,12 @@ describe("Date formatter", () => {
   it("Threating if date is null", () => {
     const isoDate = null;
     const dateFormatted = dateFormat(isoDate);
-    expect(dateFormatted).toBe("Jan 1, 2000");
+    expect(dateFormatted).toBe("");
   });
 
   it("Threating if date is undefined", () => {
     const isoDate = undefined;
     const dateFormatted = dateFormat(isoDate);
-    expect(dateFormatted).toBe("Jan 1, 2000");
+    expect(dateFormatted).toBe("");
   });
 });
