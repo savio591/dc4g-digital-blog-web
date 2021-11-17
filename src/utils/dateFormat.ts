@@ -2,18 +2,22 @@ import { format, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
 export function dateFormat(dateISO: string | undefined | null): string {
-  const dateFormattedLowerCase = format(
-    parseISO(dateISO || "0"),
-    "MMM dd, yyyy",
-    {
-      locale: ptBR,
-    }
-  );
+  try {
+    const dateFormattedLowerCase = format(
+      parseISO(dateISO || "0"),
+      "MMM dd, yyyy",
+      {
+        locale: ptBR,
+      }
+    );
 
-  const firstCharacter = dateFormattedLowerCase.substring(0, 1);
-  const restStrings = dateFormattedLowerCase.substring(1);
+    const firstCharacter = dateFormattedLowerCase.substring(0, 1);
+    const restStrings = dateFormattedLowerCase.substring(1);
+    return firstCharacter.toUpperCase() + restStrings;
+  } catch {
+    return "";
+  }
 
-  return firstCharacter.toUpperCase() + restStrings;
   // return new Intl.DateTimeFormat("pt-BR", {
   //   month: "short",
   //   day: "numeric",
