@@ -8,10 +8,14 @@ interface HeaderProps {
 
 export function PostsHeader({ title, results }: HeaderProps): JSX.Element {
   const resultsHeaderFormatted = useMemo(() => {
-    if (typeof results !== 'number' || results < 1) {
+    if (typeof results !== "number" || results < 1) {
       return "Nenhum resultado encontrado";
     }
-    return `${results} resultados`;
+    return (
+      <>
+        <span>{results}</span> resultados
+      </>
+    );
   }, [results]);
 
   return (

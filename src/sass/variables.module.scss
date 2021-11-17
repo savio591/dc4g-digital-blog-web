@@ -1,8 +1,39 @@
+// Colors
 $heading-primary: #0073e6;
 $divider: #e1e6ef;
 $background-primary: #ffffff;
 $text-primary: #000000;
 
+// Margin and Padding
+$header-posts-padding-x-xs: 1.5rem;
+$header-posts-padding-x-sm: 2rem;
+$header-posts-padding-x-xl: 0;
+$header-posts-padding-x-xxl: 0;
+
+$header-posts-padding-y-xs: 2.5rem;
+$header-posts-padding-y-sm: 2.5rem;
+$header-posts-padding-y-xl: 2.5rem;
+$header-posts-padding-y-xxl: 7.5rem;
+
+$header-posts-padding-bottom-xs: 2.5rem;
+$header-posts-padding-bottom-xl: 2.5rem;
+$header-posts-padding-bottom-xxl: 5rem;
+
+// Breakpoints layout
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+);
+$container-max-width: 1040px;
+$gutter: 16px;
+$column-width: 72px;
+$column-quantity: 12;
+
+// SCSS variables to Typescript
 :export {
   headingPrimary: $heading-primary;
   divider: $divider;
