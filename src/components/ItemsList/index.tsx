@@ -10,6 +10,7 @@ export type ItemProps = {
   description: string;
   createdAt: string;
   updatedAt: string;
+  slug: string;
 };
 
 interface ItemsListProps {
@@ -37,12 +38,13 @@ export const ItemBase = ({
   description,
   createdAt,
   updatedAt,
+  slug,
 }: ItemProps): JSX.Element => {
   const createdAtFormatted = useMemo(() => dateFormat(createdAt), [createdAt]);
   const updatedAtFormatted = useMemo(() => dateFormat(updatedAt), [updatedAt]);
 
   return (
-    <li>
+    <li key={slug}>
       <div>
         <Image src={imageUrl} layout="fill" alt={imageAlt} />
       </div>
