@@ -1,5 +1,6 @@
 # Teste DC4G - Gov Digital Blog
 
+[![Unitary Tests](https://github.com/savio591/dc4g-digital-blog-web/actions/workflows/jest.yml/badge.svg)](https://github.com/savio591/dc4g-digital-blog-web/actions/workflows/jest.yml)
 [![typescript](https://badgen.net/badge/icon/typescript?icon=typescript&label)](https://www.typescriptlang.org/)
 ![Next JS](https://img.shields.io/badge/Next-black?logo=next.js&logoColor=white)
 ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?logo=vercel&logoColor=white)
@@ -16,7 +17,7 @@ A seguir, pontos importantes para o desenvolvimento do projeto:
 ## Objetivo-teste:
 Eles não querem apenas ver se o código funciona, mas como e o por quê dele funcionar. Como a própria Dc4G anotou, o objetivo(e/ou teste) secundário da dc4g é:
 
-* Avaliar como as habilidades que você pode adquirir em 7(sete) dias estudando sobre desenvolvimento frontend. 
+* Avaliar como as habilidades que você pode adquirir em 7(sete) dias estudando sobre desenvolvimento frontend.
 * Conhecer como o candidato escreve seus códigos e resolve os desafios do cotidiano front-end, como paginação e filtragem de conteúdo.
 
 ## Avaliação:
