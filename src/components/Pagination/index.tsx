@@ -10,36 +10,32 @@ export function Pagination({ current, total }: PaginationProps): JSX.Element {
   const [currentLocal, setCurrentLocal] = useState(current);
   const router = useRouter();
 
-  useEffect(() => {
-    if (currentLocal > 0) {
-      router.push(`/?page=${currentLocal}`);
-    }
-  }, [currentLocal, router]);
-
   function handleButtonClick(buttonClickedNumber: number) {
+    // setCurrentLocal(buttonClickedNumber);
+    router.push(`/?page=${buttonClickedNumber}`);
     setCurrentLocal(buttonClickedNumber);
   }
 
   return (
     <div role="group">
-      {current !== 1 && (
+      {currentLocal !== 1 && (
         <button
           aria-label="página anterior"
           onClick={() => {
-            setCurrentLocal(current - 1);
+            handleButtonClick(currentLocal - 1);
           }}
         >
-          {">"}
+          {"<"}
         </button>
       )}
       {arraysNumberGenerator(total).map((pageNumber) => {
         return Button(pageNumber, currentLocal, pageNumber, handleButtonClick);
       })}
-      {current !== total && (
+      {currentLocal !== total && (
         <button
           aria-label="próxima página"
           onClick={() => {
-            setCurrentLocal(current + 1);
+            handleButtonClick(currentLocal + 1);
           }}
         >
           {">"}
