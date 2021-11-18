@@ -2,7 +2,16 @@
 $heading-primary: #0073e6;
 $divider: #e1e6ef;
 $background-primary: #ffffff;
-$text-primary: #000000;
+$text-primary: #333333;
+$text-secondary: $heading-primary;
+$background-gradient-start: #26425999 0%;
+$background-gradient-end: #ffffff00 107.93%;
+
+$heading-primary: invert($heading-primary);
+$divider: invert($divider, 90%);
+$background-primary: invert($background-primary, 90%);
+$text-primary: invert($text-primary, 90%);
+$text-secondary: $heading-primary;
 
 // Margin and Padding
 $header-posts-padding-x-xs: 1.5rem;
@@ -18,6 +27,10 @@ $header-posts-padding-y-xxl: 7.5rem;
 $header-posts-padding-bottom-xs: 2.5rem;
 $header-posts-padding-bottom-xl: 2.5rem;
 $header-posts-padding-bottom-xxl: 5rem;
+
+$list-items-gap: 1.5rem;
+
+$card-section-padding-xs: 1.5rem;
 
 // Breakpoints layout
 $grid-breakpoints: (
