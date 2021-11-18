@@ -52,14 +52,13 @@ describe("Pagination", () => {
   });
 
   it("Should be able to click on next page", () => {
-    const { debug } = render(<Pagination current={1} total={5} />);
+    render(<Pagination current={1} total={5} />);
 
     const buttonsList = screen.getByText("2");
     expect(buttonsList).toHaveAttribute("aria-current", "false");
 
     const nextButton = screen.getByLabelText(/^next|próxim/iu); /* Bilíngual */
     userEvent.click(nextButton);
-    debug();
 
     expect(buttonsList).toHaveAttribute("aria-current", "true");
   });
