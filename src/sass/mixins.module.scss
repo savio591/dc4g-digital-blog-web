@@ -1,0 +1,22 @@
+@mixin containerPaddinatorX {
+  max-width: $container-max-width;
+  padding-left: $header-posts-padding-x-xs;
+  padding-right: $header-posts-padding-x-xs;
+  margin: 0 auto;
+  width: 100%;
+
+  @media screen and (min-width: map.get($grid-breakpoints, "sm")) {
+    padding-left: $header-posts-padding-x-sm;
+    padding-right: $header-posts-padding-x-sm;
+  }
+
+  @media screen and (min-width: map.get($grid-breakpoints, "xl")) {
+    padding-left: $header-posts-padding-x-xl;
+    padding-right: $header-posts-padding-x-xl;
+  }
+
+  @media screen and (min-width: map.get($grid-breakpoints, "xxl")) {
+    padding-left: $header-posts-padding-x-xxl;
+    padding-right: $header-posts-padding-x-xxl;
+  }
+}
