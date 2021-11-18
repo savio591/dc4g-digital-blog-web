@@ -64,17 +64,22 @@ describe("Pagination", () => {
     expect(buttonsList).toHaveAttribute("aria-current", "true");
   });
 
-  it("Should be able to click on previous page", () => {
-    render(<Pagination current={4} total={4} />);
+  it("Should not be able to click on previous page", () => {
+    render(<Pagination current={2} total={4} />);
 
-    const button4 = screen.getByText("4");
-    const button3 = screen.getByText("3");
-    expect(button4).toHaveAttribute("aria-current", "true");
-
-    const previousButton = screen.getByLabelText(/^prev|ante/iu); /* Bilíngual */
+    const previousButton =
+      screen.getByLabelText(/^prev|ante/iu); /* Bilíngual */
     userEvent.click(previousButton);
 
-    expect(button4).toHaveAttribute("aria-current", "false");
-    expect(button3).toHaveAttribute("aria-current", "true");
+    expect(previousButton).not.toBeInTheDocument();
+  });
+
+  it("Should not be able to click on next page", () => {
+    render(<Pagination current={3} total={4} />);
+
+    const nextButton = screen.getByLabelText(/^next|próxim/iu); /* Bilíngual */
+    userEvent.click(nextButton);
+
+    expect(nextButton).not.toBeInTheDocument();
   });
 });
