@@ -2,16 +2,19 @@
 $heading-primary: #0073e6;
 $divider: #e1e6ef;
 $background-primary: #ffffff;
+$background-secondary: $heading-primary;
 $text-primary: #333333;
+$text-white: $background-primary;
 $text-secondary: $heading-primary;
 $background-gradient-start: #26425999 0%;
 $background-gradient-end: #ffffff00 107.93%;
 
-$heading-primary: invert($heading-primary);
-$divider: invert($divider, 90%);
-$background-primary: invert($background-primary, 90%);
-$text-primary: invert($text-primary, 90%);
-$text-secondary: $heading-primary;
+// $heading-primary: invert($heading-primary);
+// $divider: invert($divider, 90%);
+// $background-primary: invert($background-primary, 90%);
+// $background-secondary: $heading-primary;
+// $text-primary: invert($text-primary, 90%);
+// $text-secondary: $heading-primary;
 
 // Margin and Padding
 $header-posts-padding-x-xs: 1.5rem;
