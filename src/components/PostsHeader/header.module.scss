@@ -1,0 +1,71 @@
+@use "sass:map";
+@import "../../sass/variables.module.scss";
+
+header.header {
+  max-width: $container-max-width;
+  padding: $header-posts-padding-y-xs $header-posts-padding-x-xs
+    $header-posts-padding-bottom-xs;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: $heading-primary;
+  gap: 0.25rem;
+
+  h1 {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 32px;
+    letter-spacing: 0.1px;
+  }
+
+  h2 {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+
+    span {
+      font-weight: 500;
+    }
+  }
+
+  @media screen and (min-width: map.get($grid-breakpoints, "sm")) {
+    padding: $header-posts-padding-y-sm $header-posts-padding-x-sm;
+  }
+
+  @media screen and (min-width: map.get($grid-breakpoints, "md")) {
+    align-items: center;
+    flex-direction: row;
+    gap: 1.25rem;
+
+    h1 {
+      font-size: 40px;
+      line-height: 40px;
+    }
+
+    h2 {
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+
+  @media screen and (min-width: map.get($grid-breakpoints, "xl")) {
+    padding: $header-posts-padding-y-xl $header-posts-padding-x-xl
+      $header-posts-padding-bottom-xl;
+  }
+
+  @media screen and (min-width: map.get($grid-breakpoints, "xxl")) {
+    padding: $header-posts-padding-y-xxl $header-posts-padding-x-xxl
+      $header-posts-padding-bottom-xxl;
+  }
+}
+
+.divider {
+  display: none;
+  height: 40px;
+  border-right: 1px solid $divider;
+
+  @media screen and (min-width: map.get($grid-breakpoints, "md")) {
+    display: block;
+  }
+}

@@ -1,0 +1,23 @@
+@import "../../sass/variables.module.scss";
+
+div.container {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+
+  & button {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 2.25rem;
+    text-transform: uppercase;
+    color: $text-secondary;
+
+    background: transparent;
+    border: transparent;
+
+    &[aria-current="true"] {
+      background: $background-secondary;
+      color: $text-white;
+    }
+  }
+}

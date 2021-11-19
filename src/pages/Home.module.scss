@@ -1,0 +1,6 @@
+.main {
+  margin-bottom: 3rem;
+  & > ul + div {
+    margin-top: 2rem;
+  }
+}

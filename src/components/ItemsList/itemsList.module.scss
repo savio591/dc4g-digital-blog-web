@@ -1,0 +1,170 @@
+@use "sass:map";
+@import "../../sass/variables.module.scss";
+@import "../../sass/mixins.module.scss";
+
+.container {
+  @include containerPaddinatorX;
+  display: flex;
+  flex-direction: column;
+
+  & > p[role="alert"] {
+    color: $text-secondary;
+  }
+
+  li + li {
+    margin-top: $list-items-gap;
+  }
+
+  & li.card {
+    border: 1px solid $divider;
+    box-shadow: 0px 8px 16px rgba(11, 31, 77, 0.04);
+    border-radius: 4px;
+    list-style: none;
+
+    @media screen and (min-width: map.get($grid-breakpoints, "md")) {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1.5rem;
+    }
+
+    // Image
+    & > div.imgDiv {
+      position: relative;
+      width: 100%;
+      height: 202px;
+      background: linear-gradient(
+        180deg,
+        $background-gradient-start,
+        $background-gradient-end
+      );
+      border-radius: 4px 4px 0px 0px;
+
+      img {
+        // display: none !important;
+        z-index: -1;
+        object-fit: cover;
+      }
+
+      @media screen and (min-width: map.get($grid-breakpoints, "md")) {
+        max-width: 192px;
+        max-height: 192px;
+        align-self: center;
+        img {
+          border-radius: 5px;
+        }
+      }
+    }
+
+    & > section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: $card-section-padding-xs;
+
+      @media screen and (min-width: map.get($grid-breakpoints, "lg")) {
+        max-height: 192px;
+      }
+
+      p.category {
+        color: $text-secondary;
+        font-size: 13px;
+        line-height: 16px;
+        text-transform: uppercase;
+        font-weight: bold;
+
+        @media screen and (min-width: map.get($grid-breakpoints, "md")) {
+          line-height: 20px;
+        }
+      }
+
+      article {
+        color: $text-primary;
+
+        & h3 {
+          font-size: 20px;
+
+          max-height: 56px;
+          line-height: 28px;
+
+          margin-top: 1rem;
+
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        & p {
+          font-size: 14px;
+          line-height: 24px;
+          margin-top: 1rem;
+        }
+
+        @media screen and (min-width: map.get($grid-breakpoints, "md")) {
+          & h3 {
+            font-size: 24px;
+            max-height: 24px;
+            line-height: 24px;
+            margin-top: 18px;
+
+            max-height: 28px;
+            line-height: 28px;
+
+            -webkit-line-clamp: 1;
+          }
+
+          & p {
+            font-size: 16px;
+            line-height: 24px;
+            margin-top: 8px;
+          }
+        }
+      }
+
+      p[role="contentinfo"] {
+        & .icon {
+          margin-right: 8px;
+
+          @media screen and (min-width: map.get($grid-breakpoints, "xs")) {
+            display: none;
+          }
+
+          @media screen and (min-width: map.get($grid-breakpoints, "sm")) {
+            display: unset;
+          }
+        }
+        color: $text-primary;
+        font-size: 12px;
+        line-height: 14px;
+        margin-top: 2.5rem;
+
+        align-items: center;
+
+        @media screen and (min-width: map.get($grid-breakpoints, "sm")) {
+          display: inline-flex;
+          white-space: pre;
+        }
+
+        @media screen and (min-width: map.get($grid-breakpoints, "md")) {
+          margin-top: 1rem;
+        }
+
+        @media screen and (min-width: map.get($grid-breakpoints, "xl")) {
+          margin-top: 2.5rem;
+        }
+      }
+
+      @media screen and (min-width: map.get($grid-breakpoints, "md")) {
+        padding: 0;
+        font-size: 14px;
+        line-height: 16px;
+      }
+    }
+  }
+}
