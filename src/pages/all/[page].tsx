@@ -1,21 +1,22 @@
-import type { GetStaticProps, NextPage } from "next";
+import type { GetStaticProps, NextPage, GetStaticPaths } from "next";
 import { useMemo } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 
-import { api as backendApi } from "./api/_lib/api";
+import { api as backendApi } from "../api/_lib/api";
 
-import { ItemsList } from "../components/ItemsList";
-import { Pagination } from "../components/Pagination";
-import { PostsHeader } from "../components/PostsHeader";
+import { ItemsList } from "../../components/ItemsList";
+import { Pagination } from "../../components/Pagination";
+import { PostsHeader } from "../../components/PostsHeader";
 
-import { stringToNumber } from "../utils/stringToNumber";
+import { stringToNumber } from "../../utils/stringToNumber";
+import { generateArrayWithNumbers } from "../../utils/generateArrayWithNumbers";
 
-import styles from "./Home.module.scss";
+import styles from "../Home.module.scss";
 
 type ResultsProps = {
-  descricao_imagem: string | null;
-  imagem_destaque_url: string | null;
+  descricao_imagem: string;
+  imagem_destaque_url: string;
   categoria_titulo: string;
   titulo: string;
   resumo: string;
@@ -42,8 +43,8 @@ const Home: NextPage<HomePageProps> = ({
       createdAt: item.created_at,
       updatedAt: item.updated_at,
       description: item.resumo,
-      imageAlt: item.descricao_imagem ?? undefined,
-      imageUrl: item.imagem_destaque_url ?? undefined,
+      imageAlt: item.descricao_imagem,
+      imageUrl: item.imagem_destaque_url,
       slug: item.slug,
       title: item.titulo,
     }));
@@ -59,7 +60,7 @@ const Home: NextPage<HomePageProps> = ({
       return 1;
     }
     return parsedPage;
-  }, [currentPageFromQuery]);
+  }, [currentPageFromQuery]);    
 
   return (
     <div>
@@ -82,13 +83,40 @@ const Home: NextPage<HomePageProps> = ({
 
 export default Home;
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const response = async (): Promise<ResponseProps> => {
     const response = await backendApi.get("/noticias?publicado=true", {
       headers: {
         Authorization: process.env.API_POSTS_SECRET || "",
       },
     });
+    return await response.data;
+  };
+
+  const pages = generateArrayWithNumbers((await response()).total_pages);
+
+  const paths = pages.map((number) => {
+    return { params: { page: number.toString() } };
+  });
+
+  return {
+    paths,
+    fallback: true,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { page } = context.params as { page: string };
+
+  const response = async (): Promise<ResponseProps> => {
+    const response = await backendApi.get(
+      `/noticias?publicado=true&page=${page}`,
+      {
+        headers: {
+          Authorization: process.env.API_POSTS_SECRET || "",
+        },
+      }
+    );
 
     return response.data;
   };
