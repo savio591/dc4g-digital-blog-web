@@ -8,7 +8,7 @@
 
 O projeto consiste em criar uma página de blog dinâmica como proposta de colocação no mercado através de estágio por meio da [Dc4G Digital].
 
-⚠️ **Caso pular estas notas, vá direto para configuração das [variáveis de ambiente](###)** ⚠️
+⚠️ **Caso pular estas notas, vá direto para configuração das [variáveis de ambiente](#configuração-das-variávies-de-ambiente)** ⚠️
 
 # Sobre o desafio:
 Okay, mas como é esse teste? A [Dc4G] mandou o [documento] sobre o desafio em completo. Em resumo, o candidato deve construir um blog com React e Typescript utilizando este [template].
@@ -82,6 +82,9 @@ Acredito que não é preciso ensinar como abir em modo de desenvolvimento, deplo
 
 ```bash
 # <pastaraiz>/.local.env
+
+## Variáveis de ambiente funcionam apenas para o lado do servidor, exceto quando
+## sinaliza começando com NEXT_PUBLIC. Logo, NEXT_PUBLIC vai para o lado cliente.
 
 NEXT_PUBLIC_HOSTNAME=localhost
 NEXT_PUBLIC_PORT=3000
