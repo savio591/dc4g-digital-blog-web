@@ -1,3 +1,6 @@
+@use 'sass:map';
+@import './variables.module.scss';
+
 @mixin containerPaddinatorX {
   max-width: $container-max-width;
   padding-left: $header-posts-padding-x-xs;
