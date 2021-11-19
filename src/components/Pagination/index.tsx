@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
+import styles from './Pagination.module.scss';
 
 interface PaginationProps {
   current: number;
@@ -10,14 +12,13 @@ export function Pagination({ current, total }: PaginationProps): JSX.Element {
   const [currentLocal, setCurrentLocal] = useState(current);
   const router = useRouter();
 
-  function handleButtonClick(buttonClickedNumber: number) {
-    // setCurrentLocal(buttonClickedNumber);
-    router.push(`/?page=${buttonClickedNumber}`);
+  async function handleButtonClick(buttonClickedNumber: number) {
+    await router.push(`/all/${buttonClickedNumber}`);
     setCurrentLocal(buttonClickedNumber);
   }
 
   return (
-    <div role="group">
+    <div role="group" className={styles.container}>
       {currentLocal !== 1 && (
         <button
           aria-label="página anterior"
