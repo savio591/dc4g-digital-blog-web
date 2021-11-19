@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { useMemo } from "react";
+import Link from "next/link";
+import { FC } from "react";
 import { dateFormat } from "../../utils/dateFormat";
 
 import { MdEditCalendar } from "react-icons/md";
@@ -7,8 +8,8 @@ import { MdEditCalendar } from "react-icons/md";
 import styles from "./itemsList.module.scss";
 
 export type ItemProps = {
-  imageAlt: string;
-  imageUrl: string;
+  imageAlt: string | null | undefined;
+  imageUrl: string | null | undefined;
   category: string;
   title: string;
   description: string;
@@ -33,7 +34,12 @@ export function ItemsList({ posts }: ItemsListProps) {
   }
   return (
     <ul className={styles.container}>
-      {posts.map((post) => ItemBase({ ...post }))}
+      {posts.map((post) => {
+        if (!post?.imageAlt ?? !post?.imageUrl) {
+          return;
+        }
+        return ItemBase({ ...post });
+      })}
     </ul>
   );
 }
@@ -47,28 +53,38 @@ export const ItemBase = ({
   updatedAt,
   slug,
 }: ItemProps): JSX.Element => {
-  const createdAtFormatted = useMemo(() => dateFormat(createdAt), [createdAt]);
-  const updatedAtFormatted = useMemo(() => dateFormat(updatedAt), [updatedAt]);
+  const createdAtFormatted = dateFormat(createdAt);
+  const updatedAtFormatted = dateFormat(updatedAt);
+
+  const ContentInfo: FC = () => (
+    <p role="contentinfo">
+      <MdEditCalendar size={24} className={styles.icon} />
+      {"Publicado: "}
+      <time dateTime={createdAt}>{createdAtFormatted}</time>
+      {updatedAt && " - Atualizado: "}
+      {updatedAt && <time dateTime={updatedAt}>{updatedAtFormatted}</time>}
+    </p>
+  );
 
   return (
     <li key={slug} className={styles.card}>
-      <div className={styles.imgDiv}>
-        <Image src={imageUrl} layout="fill" alt={imageAlt} />
-      </div>
+      {imageUrl && imageAlt && (
+        <div className={styles.imgDiv}>
+          {<Image src={imageUrl} layout="fill" alt={imageAlt} />}
+        </div>
+      )}
       <section>
         <p className={styles.category}>{category}</p>
         <article>
-          <h3>{title}</h3>
+          <Link href={`/post/${slug}`}>
+            <a>
+              <h3>{title}</h3>
+            </a>
+          </Link>
           <p>{description}</p>
         </article>
 
-        <p role="contentinfo">
-          <MdEditCalendar size={24} className={styles.icon} />
-          {"Publicado: "}
-          <time dateTime={createdAt}>{createdAtFormatted}</time>
-          {updatedAt && " - Atualizado: "}
-          {updatedAt && <time dateTime={updatedAt}>{updatedAtFormatted}</time>}
-        </p>
+        <ContentInfo />
       </section>
     </li>
   );
