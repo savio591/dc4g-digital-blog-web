@@ -1,0 +1,81 @@
+@use "sass:map";
+@import "../../sass/variables.module.scss";
+@import "../../sass/mixins.module.scss";
+
+.container {
+  background: $background-secondary;
+  color: $text-white;
+  padding: 2.5rem 0 2.5rem;
+
+  @media screen and (min-width: map.get($grid-breakpoints, "sm")) {
+    padding: 3rem 0 2.5rem;
+  }
+
+  @media screen and (min-width: map.get($grid-breakpoints, "md")) {
+    padding: 4rem 0 2.5rem;
+  }
+
+  @media screen and (min-width: map.get($grid-breakpoints, "xxl")) {
+    padding: 5rem 0 2.5rem;
+  }
+
+  & > *,
+  & > * ~ * {
+    @include containerPaddinatorX;
+  }
+
+  h1,
+  h2,
+  p,
+  time,
+  span {
+    &::selection {
+      color: $text-primary;
+      background: $divider;
+    }
+  }
+
+  & > h1 {
+    font-size: 24px;
+    line-height: 32px;
+
+    @media screen and (min-width: map.get($grid-breakpoints, "sm")) {
+      font-size: 32px;
+      line-height: 37px;
+    }
+  }
+
+  & > h2 {
+    font-weight: normal;
+    font-size: 16px;
+    margin-top: 1rem;
+
+    @media screen and (min-width: map.get($grid-breakpoints, "sm")) {
+      font-size: 18px;
+    }
+  }
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+
+    @media screen and (min-width: map.get($grid-breakpoints, "md")) {
+      flex-direction: row;
+      margin-top: 4rem;
+      justify-content: space-between;
+    }
+
+    div[role="contentinfo"] {
+      p {
+        font-size: 12px;
+        line-height: 24px;
+
+        @media screen and (min-width: map.get($grid-breakpoints, "md")) {
+          font-size: 14px;
+          line-height: 16px;
+        }
+      }
+    }
+  }
+}
