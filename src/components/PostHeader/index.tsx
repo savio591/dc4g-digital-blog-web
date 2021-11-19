@@ -1,11 +1,10 @@
 import { useRouter } from "next/router";
 import { useMemo } from "react";
-// import {} from "react-icons";
 
 import { dateFormat } from "../../utils/dateFormat";
 import { LinkNav } from "./LinkNav";
 
-// import styles from "./postHeader.module.scss";
+import styles from "./PostHeader.module.scss";
 
 interface PostHeaderProps {
   title: string;
@@ -21,20 +20,22 @@ export function PostHeader({
   updatedAt,
 }: PostHeaderProps): JSX.Element {
   const router = useRouter();
-  const uri = router.pathname;
+  const uri = `${
+    (process.env.NEXT_PUBLIC_HOST ??
+      `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`) + router.asPath
+  }`;
   const createdAtFormatted = useMemo(() => dateFormat(createdAt), [createdAt]);
   const updatedAtFormatted = useMemo(() => dateFormat(updatedAt), [updatedAt]);
 
   return (
-    <header>
+    <header className={styles.container}>
       <h1>{title}</h1>
       <h2>{description}</h2>
       <div>
         <div role="contentinfo">
           <p>
-            Publicado:
-            <time dateTime={createdAt}>{createdAtFormatted}</time>
-            {updatedAt && "- Atualizado:"}
+            Publicado: <time dateTime={createdAt}>{createdAtFormatted}</time>
+            {updatedAt && " - Atualizado: "}
             {updatedAt && (
               <time dateTime={updatedAt}>{updatedAtFormatted}</time>
             )}
