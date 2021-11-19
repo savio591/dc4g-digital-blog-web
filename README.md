@@ -6,9 +6,9 @@
 ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?logo=vercel&logoColor=white)
 ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?logo=SASS&logoColor=white)
 
-⚠️ **Projeto em desenvolvimento, para informações e códigos atualizados, vá para á branch [dev]** ⚠️
-
 O projeto consiste em criar uma página de blog dinâmica como proposta de colocação no mercado através de estágio por meio da [Dc4G Digital].
+
+⚠️ **Caso pular estas notas, vá direto para configuração das [variáveis de ambiente](###)** ⚠️
 
 # Sobre o desafio:
 Okay, mas como é esse teste? A [Dc4G] mandou o [documento] sobre o desafio em completo. Em resumo, o candidato deve construir um blog com React e Typescript utilizando este [template].
@@ -22,7 +22,6 @@ Eles não querem apenas ver se o código funciona, mas como e o por quê dele fu
 
 ## Avaliação:
 O que deve ser imprescindível e usado como checklist/métrica pessoal de desempenho.
-
 ### Pontos obrigatórios
 
 * Qualidade do Código(O código é legível?)
@@ -53,20 +52,47 @@ A se basear no prazo e em atividades passadas, segui o seguinte cronograma.
 | Desenvolvimento 2                              | Desenvolver, ler documentações e testar o projeto, sempre a ser orientado por componentes e partes(de cima para baixo), respectivamente.                       | 6º dia(18 de Nov. 2021) |
 | Correção de bugs e finalização de documentação | Resolver [issues] e preparar para entregar. Boa sorte!                                                                                                         | 7º dia(19 de Nov. 2021) |
 
-## Organização e controle de tarefas:
-Fazer as coisas de cabeça, mesmo quando se trabalha há um bom tempo, nunca foi uma boa ideia. Portanto, busco controlar o tempo nos mini-desafios e problemas.
 
-### Notas sobre coding
-* Optei por aplicar diversas formas de desenvolvimento, por exemplo, o uso do layout misto utilizando classes, módulos css e inline styling.
+### Notas sobre o coding:
 
-** *estou desenvolvendo e escrevendo aqui* **
+Blog? React? É claro que vou usar com Next.js!
+
+Caso não conheça, em resumo, para o nosso caso, ele renderiza as páginas do React de forma híbrida o que for possível para ser gerado de forma estática e menos dependência do javascript possível.
+
+O que mais brilha meus olhos com Next é poder fazer um deploy com páginas dinâmicas/estáticas de forma simples, com qualidade de infraestrutura e, principalmente, é gratuito.
+
+App é híbrido, mistura de SPA(Single Page Application), Static Page e Server Side-Rendering, ou seja, ISG(Incrimental Static Generator). Mas por quê? No projeto, o Next foi configurado para fazer as requisições da api através do lado do servidor Node/Vercel/Next e gerar um objeto(props para a routas SSG/React) para o Next criar uma página estática através do código em React. Assim, além das informações ficarem em html cruas, haverá a possibilidade de manipular estes dados com métodos do JavaScript e React.
+
+Caso haja algum problema com a api, as páginas e imagens continuarão no servidor e tentará revalidar com a próxima requisição pelo lado client ou a cada 1 hora(se houver tráfego).
+
+A forma de desenvolvimeno com Next é semelhante a com o Create-React-App, o que mudará é que o React Routes não é utilizado, porém, o Next Routes é fácil de entender.
+
+Alguns testes unitários foram feitos. Mas por causa do tempo, optei por não continuar com os das rotas, api e das páginas.
 
 ### Padrões de desenvolvimento:
 
 * Funções, classes, variáveis, comentários escritos em **Inglês**;
 * **Hierarquia de arquivos:** a seguir o padrão comum entre desenvolvedores React/Next.JS(Acredito que para devs de outros ecossistemas que os padrões de código são autoexplicativas); Especialmente a [documentação ts] do Next.JS
-* **Padrões de código e estilo:** O favorito dos JS Devs, [Airbnb], não como regra absoluta.
-* ** *estou desenvolvendo e escrevendo aqui*
+
+### Configuração das variávies de ambiente
+
+Acredito que não é preciso ensinar como abir em modo de desenvolvimento, deploy, produção, etc.
+
+**As variáveis são essas:**
+
+```bash
+# <pastaraiz>/.local.env
+
+NEXT_PUBLIC_HOSTNAME=localhost
+NEXT_PUBLIC_PORT=3000
+NEXT_PUBLIC_HOST=http://$NEXT_PUBLIC_HOSTNAME:$NEXT_PUBLIC_PORT
+
+API_BASEURL= `URL DO BACKEND. EX: https://site.com/api`
+API_POSTS_SECRET=`BEARER TOKEN DO BACKEND DOS POSTS`
+API_HOSTNAME=`HOSTNAME DO BACKEND. EX: site.com`
+
+
+```
 
 ---
 Feito com 💜, [Savio Castelo], 2021.
